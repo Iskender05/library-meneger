@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    h1= book.title
+    p Автор: #{book.author}
+    p Дата выпуска: #{book.releaseDate}
+    if book.available
+        form(action=`/books/borrow/${book.id}`, method="POST")
+            label Имя читателя
+            input(type="text", name="borrower" required)
+            label Дата возврата
+            input(type="date", name="dueDate" required)
+            button.btn(type="submit") Выдать книгу
+    else
+        p Выдана: #{book.borrower} до #{book.dueDate}
+        form(action=`/books/return/${book.id}`, method="POST")
+            button.btn(type="submit") Вернуть книгу
+    a(href="/") Назад к списку

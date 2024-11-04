@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "title": "War and Peace",
+    "author": "Leo Tolstoy",
+    "releaseDate": "1869",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  },
+  {
+    "id": 2,
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "releaseDate": "1813",
+    "available": false,
+    "borrower": "Alice",
+    "dueDate": "2024-12-01"
+  },
+  {
+    "id": 3,
+    "title": "Moby-Dick",
+    "author": "Herman Melville",
+    "releaseDate": "1851",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  },
+  {
+    "id": 4,
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "releaseDate": "1925",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  },
+  {
+    "id": 5,
+    "title": "1984",
+    "author": "George Orwell",
+    "releaseDate": "1949",
+    "available": false,
+    "borrower": "Bob",
+    "dueDate": "2024-11-15"
+  },
+  {
+    "id": 6,
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "releaseDate": "1960",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  },
+  {
+    "id": 7,
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "releaseDate": "1951",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  },
+  {
+    "id": 8,
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "releaseDate": "1932",
+    "available": false,
+    "borrower": "Charlie",
+    "dueDate": "2024-12-10"
+  },
+  {
+    "id": 9,
+    "title": "Crime and Punishment",
+    "author": "Fyodor Dostoevsky",
+    "releaseDate": "1866",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  },
+  {
+    "id": 10,
+    "title": "The Brothers Karamazov",
+    "author": "Fyodor Dostoevsky",
+    "releaseDate": "1880",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  }
+]

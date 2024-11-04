@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1 Домашняя библиотека
+    div.book-list
+        each book in library
+            div
+                h2= book.title
+                p Автор: #{book.author}
+                p Дата выпуска: #{book.releaseDate}
+                p= book.available ? 'В наличии' : 'Выдана'
+                if !book.available
+                    p Выдана: #{book.borrower} до #{book.dueDate}
+                a.btn(href=`/books/${book.id}`) Подробнее
