@@ -63,3 +63,73 @@ app.post('/books/return/:id', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const expressSession = require('express-session');
+
+// Добавим настройку Passport для аутентификации
+app.use(expressSession({ secret: 'library-secret', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Стратегия Passport.js
+passport.use(new LocalStrategy((username, password, done) => {
+    if (username === 'admin' && password === 'password') {
+        return done(null, { username: 'admin' });
+    }
+    return done(null, false);
+}));
+
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((user, done) => done(null, user));
+
+// Маршруты для аутентификации
+app.get('/login', (req, res) => res.render('login'));
+app.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
+
+// Проверка аутентификации
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) return next();
+    res.redirect('/login');
+}
+
+// Добавление книг
+app.post('/books/add', ensureAuthenticated, (req, res) => {
+    const { title, author, releaseDate } = req.body;
+    const newBook = {
+        id: library.length + 1,
+        title,
+        author,
+        releaseDate,
+        available: true,
+        borrower: null,
+        dueDate: null
+    };
+    library.push(newBook);
+    saveLibraryData();
+    res.redirect('/');
+});
+
+// Удаление книг с подтверждением
+app.post('/books/delete/:id', ensureAuthenticated, (req, res) => {
+    const bookId = parseInt(req.params.id);
+    library = library.filter(book => book.id !== bookId);
+    saveLibraryData();
+    res.redirect('/');
+});
+
+// Фильтрация с использованием AJAX
+app.get('/books/filter', (req, res) => {
+    const { available, overdue } = req.query;
+    let filteredBooks = library;
+    if (available) {
+        filteredBooks = filteredBooks.filter(book => book.available === (available === 'true'));
+    }
+    if (overdue) {
+        const today = new Date();
+        filteredBooks = filteredBooks.filter(book => !book.available && new Date(book.dueDate) < today);
+    }
+    res.json(filteredBooks);
+});
+

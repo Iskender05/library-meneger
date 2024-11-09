@@ -13,9 +13,9 @@
     "title": "Pride and Prejudice",
     "author": "Jane Austen",
     "releaseDate": "1813",
-    "available": false,
-    "borrower": "Alice",
-    "dueDate": "2024-12-01"
+    "available": true,
+    "borrower": null,
+    "dueDate": null
   },
   {
     "id": 3,
@@ -85,6 +85,24 @@
     "title": "The Brothers Karamazov",
     "author": "Fyodor Dostoevsky",
     "releaseDate": "1880",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  },
+  {
+    "id": 11,
+    "title": "The witcher",
+    "author": "A.Sapkovskiy",
+    "releaseDate": "1998",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  },
+  {
+    "id": 12,
+    "title": "Богатый папа",
+    "author": "Син джу ан",
+    "releaseDate": "2001",
     "available": true,
     "borrower": null,
     "dueDate": null

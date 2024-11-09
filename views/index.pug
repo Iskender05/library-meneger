@@ -8,7 +8,22 @@ block content
                 h2= book.title
                 p Автор: #{book.author}
                 p Дата выпуска: #{book.releaseDate}
-                p= book.available ? 'В наличии' : 'Выдана'
-                if !book.available
-                    p Выдана: #{book.borrower} до #{book.dueDate}
+                p= book.available ? 'В наличии' : 'Выдана: ' + book.borrower + ' до ' + book.dueDate
                 a.btn(href=`/books/${book.id}`) Подробнее
+                button.btn-delete(data-id=book.id) Удалить
+
+    form(action="/books/add", method="post")
+        input(type="text", name="title", placeholder="Название", required)
+        input(type="text", name="author", placeholder="Автор", required)
+        input(type="text", name="releaseDate", placeholder="Дата выпуска", required)
+        button(type="submit") Добавить книгу
+
+    // Диалог подтверждения удаления
+    dialog#confirmDialog
+        p Вы уверены, что хотите удалить эту книгу?
+        button#confirmDelete(type="button") Да
+        button#cancelDelete(type="button") Нет
+
+    // Кнопки фильтрации
+    button#filterAvailable(type="button") Только доступные
+    button#filterOverdue(type="button") Просроченные
